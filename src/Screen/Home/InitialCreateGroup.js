@@ -1,12 +1,106 @@
-import {View, Text, TouchableOpacity} from 'react-native';
-import React from 'react';
+import {View, Text, TouchableOpacity, FlatList, Image} from 'react-native';
+import React, {useState} from 'react';
 import {Block} from 'galio-framework';
 import {COLORS, FONTS} from '../../constants/theme';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {styled} from 'nativewind';
+import {contacts} from '../../constants/data';
 
 const InitialCreateGroup = ({navigation}) => {
+  const [filteredUsers, setFilteredUsers] = useState(contacts);
+
+  const renderItem = ({item, index}) => {
+    const contactID = item.id;
+
+    return (
+      <TouchableOpacity
+        //   onPress={() =>
+        //     navigation.navigate('PlainStack', {
+        //       screen: 'MessageScreen',
+        //       params: {item: item},
+        //     })
+        //   }
+        key={index}
+        style={[
+          {
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingHorizontal: 16,
+            //   borderBottomColor: newTheme.colors.danger,
+            //   borderBottomWidth: 1,
+            //   borderRadius : 10 ,
+            borderTopLeftRadius: 50,
+            borderBottomLeftRadius: 50,
+            borderTopRightRadius: 20,
+            borderBottomRightRadius: 10,
+            marginTop: 10,
+            marginHorizontal: 11,
+            width: '100%',
+            elevation: 5,
+            //   paddingVertical : 12
+          },
+          index % 2 !== 0
+            ? {
+                backgroundColor: '#98ABEE',
+              }
+            : {
+                backgroundColor: '#98ABEE',
+              },
+          //   ? {
+          //       backgroundColor: COLORS.secondary,
+          //     }
+          //   : {
+          //     backgroundColor : COLORS.secondary,
+          //   }
+        ]}>
+        <Block
+          style={{
+            paddingVertical: 10,
+            marginRight: 22,
+            //   marginVertical : 20
+          }}>
+          {item.isOnline && item.isOnline === true && (
+            <Block
+              style={{
+                height: 14,
+                width: 14,
+                borderRadius: 7,
+                backgroundColor: COLORS.green,
+                borderColor: COLORS.white,
+                borderWidth: 2,
+                position: 'absolute',
+                top: 14,
+                right: 2,
+                zIndex: 1000,
+              }}></Block>
+          )}
+
+          <Image
+            source={item.userImg}
+            resizeMode="contain"
+            style={{
+              height: 50,
+              width: 50,
+              borderRadius: 25,
+            }}
+          />
+        </Block>
+        <Block
+          style={{
+            flexDirection: 'column',
+          }}>
+          <Text style={{...FONTS.h6, marginBottom: 4}}>{item.userName}</Text>
+          <Text style={{fontSize: 14, color: COLORS.black}}>
+            {item.lastSeen}
+          </Text>
+        </Block>
+      </TouchableOpacity>
+    );
+  };
   return (
-    <Block>
+    <Block className="flex-1">
       <Block
         style={{
           flexDirection: 'row',
@@ -42,158 +136,69 @@ const InitialCreateGroup = ({navigation}) => {
         <TouchableOpacity onPress={() => console.warn('called')}>
           <AntDesign name="plus" size={25} color="#0F1828" />
         </TouchableOpacity>
+      </Block> 
+      <Block
+        style={{
+          justifyContent: 'space-evenly',
+          marginVertical: 20,
+          flexDirection: 'row',
+        }}>
+        <Block>
+          <Text style={{...FONTS.h4}}>Demo Chatscreen --1</Text>
+        </Block>
+        <Block>
+          <TouchableOpacity onPress={() => navigation.navigate('DemoScreen1')}>
+            <AntDesign name="arrowright" size={25} color="#0F1828" />
+          </TouchableOpacity>
+        </Block>
+      </Block>
+      <Block
+        style={{
+          justifyContent: 'space-evenly',
+          marginVertical: 20,
+          flexDirection: 'row',
+        }}>
+        <Block>
+          <Text style={{...FONTS.h4}}>Demo Groupscreen --2</Text>
+        </Block>
+        <Block>
+          <TouchableOpacity onPress={() => navigation.navigate('DemoScreen2')}>
+            <AntDesign name="arrowright" size={25} color="#0F1828" />
+          </TouchableOpacity>
+        </Block>
+      </Block>
+      <Block
+        style={{
+          justifyContent: 'space-evenly',
+          marginVertical: 20,
+          flexDirection: 'row',
+        }}>
+        <Block>
+          <Text style={{...FONTS.h4}}>Contact List --3</Text>
+        </Block>
+        <Block>
+          <TouchableOpacity onPress={() => navigation.navigate('DemoScreen3')}>
+            <AntDesign name="arrowright" size={25} color="#0F1828" />
+          </TouchableOpacity>
+        </Block>
+      </Block>
+      <Block
+        style={{
+          justifyContent: 'space-evenly',
+          marginVertical: 5,
+          flexDirection: 'row',
+        }}>
+        <Block>
+          <Text style={{...FONTS.h4}}>Group Screen</Text>
+        </Block>
+        <Block>
+          <TouchableOpacity onPress={() => navigation.navigate('NewScreen2')}>
+            <AntDesign name="arrowright" size={25} color="#0F1828" />
+          </TouchableOpacity>
+        </Block>
       </Block>
     </Block>
   );
 };
 
 export default InitialCreateGroup;
-
-// import React, {useState} from 'react';
-// import {View, FlatList, Text, TouchableOpacity, Image} from 'react-native';
-// import Ionicons from 'react-native-vector-icons/Ionicons';
-// import {contacts} from '../constants/data';
-// import {COLORS, FONTS} from '../constants/theme';
-// import {Block} from 'galio-framework';
-
-// const InitialCreateGroup = () => {
-//   const [newData, setNewData] = useState(contacts);
-//   // Dummy data
-//   // const [data , setData] = useState([
-//   //   { id: '1', text: 'Item 1', name: 'nazim' },
-//   //   { id: '2', text: 'Item 2', name: 'Aasif' },
-//   //   { id: '3', text: 'Item 3', name: 'Altab' },
-//   //   { id: '4', text: 'Item 4', name: 'Yasir' },
-//   //   { id: '5', text: 'Item 5', name: 'Majid' },
-//   //   { id: '6', text: 'Item 6', name: 'Raqib' },
-//   //   { id: '7', text: 'Item 7', name: 'Zoya' },
-//   //   // Add more items as needed
-//   // ]);
-
-//   // const renderItem = ({item, index}) => {
-//   //   const contactID = item.id;
-
-//   //   return (
-//   //     <TouchableOpacity
-//   //       onPress={() => removeItem(item.id)}
-//   //       key={index}
-//   //       style={[
-//   //         {
-//   //           width: '100%',
-//   //           flexDirection: 'row',
-//   //           alignItems: 'center',
-//   //           paddingHorizontal: 2,
-//   //           borderBottomColor: COLORS.secondaryWhite,
-//   //           borderBottomWidth: 1,
-//   //         },
-//   //         index % 2 !== 0
-//   //           ? {
-//   //               backgroundColor: COLORS.tertiaryWhite,
-//   //             }
-//   //           : null,
-//   //       ]}>
-//   //       <Block
-//   //         style={{
-//   //           paddingVertical: 15,
-//   //           marginRight: 22,
-//   //         }}>
-
-//   //         {/* {item.isOnline && item.isOnline === true && (
-//   //           <Block
-//   //             style={{
-//   //               height: 14,
-//   //               width: 14,
-//   //               borderRadius: 7,
-//   //               backgroundColor: COLORS.green,
-//   //               borderColor: COLORS.white,
-//   //               borderWidth: 2,
-//   //               position: 'absolute',
-//   //               top: 14,
-//   //               right: 2,
-//   //               zIndex: 1000,
-//   //             }}>
-
-//   //             </Block>
-//   //         )} */}
-//   //        <Ionicons name="close-circle" size={24} color="red" />
-//   //         <Image
-//   //           source={item.userImg}
-//   //           resizeMode="contain"
-//   //           style={{
-//   //             height: 50,
-//   //             width: 50,
-//   //             borderRadius: 25,
-//   //           }}
-//   //         />
-
-//   //       </Block>
-//   //       <Block
-//   //         style={{
-//   //           flexDirection: 'column',
-//   //         }}>
-//   //         <Text style={{...FONTS.h4, marginBottom: 4}}>{item.userName}</Text>
-//   //       </Block>
-
-//   //     </TouchableOpacity>
-//   //   );
-//   // };
-
-//   const removeItem = itemId => {
-//     const updatedData = newData.filter(item => item.id !== itemId);
-//     setNewData(updatedData);
-//   };
-//   // Render item function for FlatList
-//   const renderItem = ({item}) => (
-//     <Block style={{margin: 4, padding: 12}}>
-//       <Image
-//         source={item.userImg}
-//         resizeMode="contain"
-//         style={{
-//           height: 50,
-//           width: 50,
-//           borderRadius: 25,
-//         }}
-//       />
-//       <Ionicons
-//         name="close-circle"
-//         size={20}
-//         color={COLORS.green}
-//         style={{
-//           position: 'absolute',
-//           // bottom: 0,
-//           // right: 0,
-//           left: 48,
-//           top: 39,
-//           width: 22,
-//           height: 22,
-//           backgroundColor: COLORS.white,
-//           borderRadius: 10,
-//           // padding: 0.5,
-//         }}
-//       />
-//       <Block
-//         style={{
-//           flexDirection: 'column',
-//         }}>
-//         <Text style={{...FONTS.h4, marginBottom: 4}}>{item.userName}</Text>
-//       </Block>
-//       <TouchableOpacity onPress={() => removeItem(item.id)}></TouchableOpacity>
-//     </Block>
-//   );
-
-//   return (
-//     <Block>
-//       <Block style={{ borderBottomWidth: 1, borderBottomColor : COLORS.gray}}>
-//         <FlatList
-//           data={newData}
-//           keyExtractor={item => item.id}
-//           renderItem={renderItem}
-//           horizontal={true}
-//           showsHorizontalScrollIndicator = {false}
-//         />
-//       </Block>
-//     </Block>
-//   );
-// };
-
-// export default InitialCreateGroup;

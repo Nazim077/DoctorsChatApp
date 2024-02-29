@@ -14,6 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {contacts} from '../../constants/data';
 import {Block} from 'galio-framework';
+import {newTheme} from '../../constants/newTheme'
 
 const PatientList = ({navigation}) => {
   const [search, setSearch] = useState('');
@@ -75,7 +76,7 @@ const PatientList = ({navigation}) => {
             flexDirection: 'row',
             alignItems: 'center',
             paddingHorizontal: 22,
-            borderBottomColor: COLORS.secondaryWhite,
+            borderBottomColor: newTheme.colors.white,
             borderBottomWidth: 1,
           },
           index % 2 !== 0
@@ -162,7 +163,7 @@ const PatientList = ({navigation}) => {
               marginTop: 22,
               // height : 25
             }}>
-            <Text style={{...FONTS.h4}}>Patient</Text>
+            <Text style={{...FONTS.h5}}>Patient</Text>
             {/* <TouchableOpacity
                 // onPress={() => handleCreateGroup()}
                 onPress={() =>

@@ -109,8 +109,9 @@ const ChatInput = ({ reply, closeReply, isLeft, userName }) => {
 					</TouchableOpacity>
 				</Block>
 				<TouchableOpacity style={styles.sendButton}>
-					<FontAwesome
-						name={message ? "send" : "microphone"}
+					<MaterialCommunityIcons
+						// name={message ? "send" : "microphone"}
+						name="send"
 						size={20}
 						color={newTheme.colors.white}
 					/>

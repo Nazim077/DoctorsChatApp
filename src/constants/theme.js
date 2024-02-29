@@ -50,6 +50,8 @@ export const FONTS = {
     h2: { fontFamily: 'bold', fontSize: SIZES.h2, lineHeight: 30 },
     h3: { fontFamily: 'bold', fontSize: SIZES.h3, lineHeight: 22 },
     h4: { fontFamily: 'bold', fontSize: SIZES.h4, lineHeight: 20 },
+    h5 : { fontSize : 22, color :COLORS.secondaryBlack, fontWeight : '600'},
+    h6 : { fontSize : 18, color :COLORS.black, fontWeight : 'bold' , lineHeight: 20},
     body1: { fontFamily: 'regular', fontSize: SIZES.body1, lineHeight: 36 },
     body2: { fontFamily: 'regular', fontSize: SIZES.body2, lineHeight: 30 },
     body3: { fontFamily: 'regular', fontSize: SIZES.body3, lineHeight: 22 },

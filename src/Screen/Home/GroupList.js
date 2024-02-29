@@ -14,6 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // import {contacts} from '../constants/data';
 import {Block} from 'galio-framework';
+import {newTheme} from '../../constants/newTheme'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GroupList = ({navigation, route}) => {
@@ -133,14 +134,16 @@ const GroupList = ({navigation, route}) => {
             flexDirection: 'row',
             alignItems: 'center',
             paddingHorizontal: 22,
-            borderBottomColor: COLORS.secondaryWhite,
+            borderBottomColor: newTheme.colors.white,
             borderBottomWidth: 1,
           },
           index % 2 !== 0
             ? {
                 backgroundColor: COLORS.tertiaryWhite,
               }
-            : null,
+            :{
+              backgroundColor : newTheme.colors.white,
+            }
         ]}>
         <Block
           style={{
@@ -181,7 +184,7 @@ const GroupList = ({navigation, route}) => {
               marginTop: 22,
               // height : 25
             }}>
-            <Text style={{...FONTS.h4}}>Group</Text>
+            <Text style={{...FONTS.h5}}>Group</Text>
             <TouchableOpacity
               // onPress={() => handleCreateGroup()}
               onPress={() =>

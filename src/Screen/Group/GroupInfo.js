@@ -9,6 +9,7 @@ import {
   StatusBar,
   Modal,
   TextInput,
+  Dimensions,
   View,
 } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -25,6 +26,7 @@ import DocumentPicker from 'react-native-document-picker';
 // import Header from '../Screen/Header'
 import {newTheme} from '../../constants/newTheme';
 import {Block} from 'galio-framework';
+const {width , height} = Dimensions.get('screen')
 
 const GroupInfo = ({navigation, route}) => {
   const item = route.params.item;
@@ -190,11 +192,116 @@ const GroupInfo = ({navigation, route}) => {
     <Block
       style={{
         flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
       }}>
-      <StatusBar backgroundColor="#003153" barStyle="light-content" />
+      {/* <StatusBar backgroundColor="#003153" barStyle="light-content" /> */}
       <ScrollView>
-        <Block style={styles.container}>
+      <Block
+        style={{
+          backgroundColor: newTheme.colors.white,
+          height: height * 0.35,
+          borderBottomWidth: 0.2,
+          borderBottomColor: newTheme.colors.primary,
+          elevation: 8,
+        }}>
+        <TouchableOpacity
+          // onPress={props.onPress}
+          onPress={() => navigation.pop()}
+          style={{
+            marginLeft: 10,
+            marginTop: 20,
+          }}>
+          <AntDesign
+            name="arrowleft"
+            // size={SIZES.padding * 3}
+            size={24}
+            color="gray"
+            // color={COLORS.black}
+          />
+        </TouchableOpacity>
+        <Block style={{flex: 1, alignItems: 'center'}}>
+          <TouchableOpacity onPress={() => imgPic()}>
+            <Block
+              style={{
+                width: 120,
+                height: 120,
+                backgroundColor: COLORS.secondaryWhite,
+                borderRadius: 100,
+                // marginVertical: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              {image ? (
+                <Image
+                  source={{uri: image}}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 100,
+                    resizeMode: 'contain',
+                  }}
+                />
+              ) : (
+                // <AntDesign name="user" size={64} color={COLORS.black} />
+                <Image
+                  source={{uri : img}}
+                  style={{
+                    width: 120,
+                    height: 120,
+                    borderRadius: 100,
+                    resizeMode: 'contain',
+                  }}
+                />
+              )}
+
+              <Block
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  right: 2,
+                  height : 40,
+                  width : 40,
+                  backgroundColor : 'green',
+                  borderRadius : 50
+                }}>
+                <FontAwesome
+                    name="camera"
+                    size={17}
+                    color={newTheme.colors.white}
+                    style={{top: 11, left: 11}}
+                  />
+              </Block>
+            </Block>
+          </TouchableOpacity>
+
+          <Block
+            style={{
+              width: '100%',
+              flex: 1,
+              alignItems: 'center',
+              marginVertical: 10,
+            }}>
+            <Text
+              style={{
+                fontSize: 24,
+                color: newTheme.colors.primary,
+                fontWeight: '500',
+              }}>
+              {name}
+            </Text>
+            <Text
+              style={{
+                fontSize: 17,
+                color: newTheme.colors.primary,
+                fontWeight: '400',
+              }}>
+            Group . {filteredUsers.length} members
+            </Text>
+           
+          </Block>
+        </Block>
+      </Block>
+        {/* <Block style={styles.container}>
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.pop()}>
@@ -266,7 +373,8 @@ const GroupInfo = ({navigation, route}) => {
               Group . {filteredUsers.length} members
             </Text>
           </Block>
-        </Block>
+        </Block> */}
+
         <Block style={styles.mediaContainer}>
           <Text style={{fontWeight: '500', marginLeft: 13}}>
             media , links and docs

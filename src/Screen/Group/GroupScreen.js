@@ -64,48 +64,6 @@ const GroupScreen = ({navigation, route}) => {
   );
 };
 
-// const Header = ({navigation, item}) => {
-//   const {name, img} = item;
-//   return (
-//     <Block style={styles.container}>
-//       <TouchableOpacity
-//         style={styles.backButton}
-//         onPress={() => navigation.pop()}>
-//         <AntDesign name="arrowleft" size={25} color={newTheme.colors.white} />
-//       </TouchableOpacity>
-//       <Block style={styles.profileOptions}>
-//         <TouchableOpacity style={styles.profile} >
-//           <Image style={styles.image} source={{ uri : img}} />
-//           <Block style={styles.userNameAndOnlineStatus}>
-//             <Text style={styles.userName}>{name}</Text>
-//             <Text style={styles.onlineStatus}> online</Text>
-//           </Block>
-//         </TouchableOpacity>
-//         <Block style={styles.options}>
-//           <TouchableOpacity
-//             // onPress={() => navigation.navigate("OnCallScreen", {
-//             // 	userName: userName,
-//             // 	userImg: userImg
-//             // })}
-//             style={{paddingHorizontal: 5}}>
-//             <MaterialIcons
-//               name="phone"
-//               size={25}
-//               color={newTheme.colors.white}
-//             />
-//           </TouchableOpacity>
-//           <TouchableOpacity style={{paddingHorizontal: 20}}>
-//             <Ionicons
-//               name="ellipsis-vertical"
-//               size={25}
-//               color={newTheme.colors.white}
-//             />
-//           </TouchableOpacity>
-//         </Block>
-//       </Block>
-//     </Block>
-//   );
-// };
 
 const styles = StyleSheet.create({
   container: {

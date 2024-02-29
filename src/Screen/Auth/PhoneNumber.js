@@ -16,12 +16,17 @@ import {COLORS, SIZES, FONTS} from '../../constants/theme';
 import Button from '../../Component/Button';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import axios from 'axios';
+import Toast from 'react-native-simple-toast';
+import Config from '../../utils/config';
+
 // import PageTitle from '../components/PageTitle'
 
 const PhoneNumber = ({navigation}) => {
   const [areas, setAreas] = useState([]);
   const [selectedArea, setSelectedArea] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [number, setNumber] = useState('');
 
   // fectch codes from rescountries api
 
@@ -49,6 +54,43 @@ const PhoneNumber = ({navigation}) => {
         }
       });
   }, []);
+
+  // submit phone number
+  const handelSubmit = async () => {
+    try {
+      let payload = {
+        mobile: number,
+        messages: 'abs',
+      };
+      debugger;
+      const response = await axios.post(
+        `${Config.apiBaseUrl}/api/otp/send`,
+        payload,
+      );
+      console.log('res', response);
+      debugger;
+      if (response.status === 201) {
+        Toast.showWithGravity(
+          'Otp Sent Successfully .',
+          Toast.SHORT,
+          Toast.CENTER,
+        );
+        navigation.navigate('Verification', {number: number});
+      } else {
+        Toast.showWithGravity(
+          'Otp is not Matched .',
+          Toast.SHORT,
+          Toast.CENTER,
+        );
+        console.log('Unexpected response status:', response.status);
+      }
+    } catch (error) {
+      debugger;
+      console.log('Error Occurred :', error);
+    }
+  };
+
+  console.warn('number', number);
 
   // render countries codes modal
   function renderAreasCodesModal() {
@@ -208,6 +250,8 @@ const PhoneNumber = ({navigation}) => {
               </TouchableOpacity>
               {/* Phone Number Text Input */}
               <TextInput
+                value={number}
+                onChangeText={text => setNumber(text)}
                 style={{
                   flex: 1,
                   marginVertical: 10,
@@ -227,7 +271,8 @@ const PhoneNumber = ({navigation}) => {
             </View>
             <Button
               title="Submit"
-              onPress={() => navigation.navigate('Verification')}
+              onPress={() => handelSubmit()}
+              // onPress={()=> navigation.navigate('Verification')}
               style={{
                 width: '100%',
                 paddingVertical: 12,

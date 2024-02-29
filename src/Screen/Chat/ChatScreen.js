@@ -14,6 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {contacts} from '../../constants/data';
 import {Block} from 'galio-framework';
+import {newTheme} from '../../constants/newTheme'
 
 const ChatScreen = ({navigation}) => {
   const [search, setSearch] = useState('');
@@ -80,14 +81,16 @@ const ChatScreen = ({navigation}) => {
             flexDirection: 'row',
             alignItems: 'center',
             paddingHorizontal: 22,
-            borderBottomColor: COLORS.secondaryWhite,
+            borderBottomColor: newTheme.colors.white,
             borderBottomWidth: 1,
           },
           index % 2 !== 0
             ? {
                 backgroundColor: COLORS.tertiaryWhite,
               }
-            : null,
+            : {
+              backgroundColor : newTheme.colors.white,
+            }
         ]}>
         <Block
           style={{
@@ -146,7 +149,10 @@ const ChatScreen = ({navigation}) => {
               marginTop: 22,
               // height : 25
             }}>
-            <Text style={{...FONTS.h4}}>Chat List</Text>
+            <Text 
+            style={{...FONTS.h5}}
+            // style={{fontSize : 22, color : COLORS.secondaryBlack, fontWeight : '600' }}
+            >Chat List</Text>
             {/* <TouchableOpacity
                 // onPress={() => handleCreateGroup()}
                 onPress={() =>

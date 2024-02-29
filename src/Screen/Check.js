@@ -37,15 +37,7 @@ const Check = ({navigation}) => {
           Easy and free, you can get all here.{' '}
         </Text>
       </Block>
-      {/* <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate('HomeScreen')}
-      /> */}
       <Block center style={{marginBottom: 400}}>
-        {/* <Image
-          source={require('../assets/img2.png')}
-          style={{width: 380, height: 300, borderRadius: 12}}
-        /> */}
         <SplashScreen />
       </Block>
       <Block style={{marginTop: -370}}>
@@ -53,7 +45,7 @@ const Check = ({navigation}) => {
           <Button
             style={styles.Button1}
             color="orange"
-            onPress={() => navigation.navigate('PhoneNumber')}>
+            onPress={() => navigation.navigate('MainStack')}>
             <Text style={styles.buttonText}> Get Started</Text>
           </Button>
         </Block>

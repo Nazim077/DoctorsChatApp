@@ -7,9 +7,24 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Input from '../../Component/Input';
 import Button from '../../Component/Button';
 import DocumentPicker from 'react-native-document-picker';
+import axios from 'axios';
+import Toast from 'react-native-simple-toast'
+import Config from '../../utils/config';
 
-const ProfileAccount = ({navigation}) => {
+const ProfileAccount = ({navigation, route}) => {
+  let number = route.params.number;
+  console.warn('number', number);
   const [image, setImage] = useState('');
+  const [profile, setProfile] = useState({
+    firstName: '',
+    lastName: '',
+  });
+
+  const handleChange = (type, value) => {
+    let obj = {...profile};
+    obj[type] = value;
+    setProfile(obj);
+  };
 
   const imgPic = async () => {
     try {
@@ -17,9 +32,42 @@ const ProfileAccount = ({navigation}) => {
         type: [DocumentPicker.types.images],
       });
       // console.warn(doc);
-      setImage(doc.uri);
+      setImage(doc);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const createProfile = async () => {
+    try {
+      const payload = new FormData();
+      payload.append('profile', image);
+      payload.append('firstName', profile.firstName);
+      payload.append('lastName', profile.lastName);
+      payload.append('mobile', number);
+
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Specify the content type for FormData
+          // Add any other headers as needed
+          // 'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // Example of an Authorization header
+        },
+      };
+      debugger;
+
+      const response = await axios.post(
+        `${Config.apiBaseUrl}/api/users`,
+        payload,config
+      );
+      debugger
+      console.log('response', response);
+      if (response.status === 201) {
+      Toast.showWithGravity('profile created successfully',Toast.SHORT, Toast.CENTER)
+        navigation.navigate('MainStack');
+      }
+    } catch (error) {
+      debugger;
+      console.log('err', error);
     }
   };
 
@@ -57,7 +105,7 @@ const ProfileAccount = ({navigation}) => {
               }}>
               {image ? (
                 <Image
-                  source={{uri: image}}
+                  source={{uri: image.uri}}
                   style={{
                     width: 100,
                     height: 100,
@@ -65,9 +113,10 @@ const ProfileAccount = ({navigation}) => {
                     resizeMode: 'contain',
                   }}
                 />
-              ) : (
+              ) 
+               : ( 
                 <AntDesign name="user" size={64} color={COLORS.black} />
-              )}
+              )} 
 
               <View
                 style={{
@@ -81,8 +130,16 @@ const ProfileAccount = ({navigation}) => {
           </TouchableOpacity>
 
           <View style={{width: '100%', paddingHorizontal: 22}}>
-            <Input id="firstName" placeholder="First Name (Required) " />
-            <Input id="lastName" placeholder="Last Name (Optional) " />
+            <Input
+              placeholder="First Name (Required) "
+              value={profile.firstName}
+              onChange={e => handleChange('firstName', e.nativeEvent.text)}
+            />
+            <Input
+              placeholder="Last Name (Optional) "
+              value={profile.lastName}
+              onChange={e => handleChange('lastName', e.nativeEvent.text)}
+            />
 
             <Button
               title="Save"
@@ -91,7 +148,7 @@ const ProfileAccount = ({navigation}) => {
                 paddingVertical: 12,
                 marginBottom: 48,
               }}
-              onPress={() => navigation.navigate('MainStack')}
+              onPress={() => createProfile()}
             />
           </View>
         </View>

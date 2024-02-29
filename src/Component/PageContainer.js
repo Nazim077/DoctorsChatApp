@@ -1,5 +1,5 @@
 import React from 'react';
-import {KeyboardAvoidingView} from 'react-native';
+import {KeyboardAvoidingView, Dimensions} from 'react-native';
 import {Platform} from 'react-native';
 import {COLORS} from '../constants/theme';
 
@@ -8,7 +8,7 @@ const PageContainer = props => {
     <KeyboardAvoidingView
       behavior={Platform.OS == 'android' ? 'padding' : ''}
       style={{
-        height: '100%',
+        height: '100%' ,
         width: '100%',
         backgroundColor: COLORS.white,
       }}>

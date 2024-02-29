@@ -6,37 +6,20 @@ import {
   Button,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Dimensions,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-// import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
-
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Login from '../Screen/Login';
-import Home from '../Screen/HomeScreen';
-//import About from '../Screen/About';
-//import Details from '../Screen/Details';
-//import Album from '../Screen/Album';
-// import Demo from '../Screen/Demo';
-// import Register from '../Screen/Register';
-// import Check from '../Screen/Check';
 import NewScreen from '../Screen/Home/NewScreen';
 import NewScreen2 from '../Screen/Home/NewScreen2';
 import MessagesScreen from '../Screen/Chat/MessageScreen';
-//import AllUser from '../Screen/AllUser';
-import Singup from '../Screen/Singup';
-import SignupScreen from '../Screen/SignupScreen';
 import SplashScreen from '../Screen/SplashScreen';
-import HomeScreen from '../Screen/HomeScreen';
-import LoginScreen from '../Screen/LoginScreen';
 import Check from '../Screen/Check';
-import Check2 from '../Screen/Check2';
 import Contacts from '../Screen/Home/Contacts';
 import PhoneNumber from '../Screen/Auth/PhoneNumber';
 import Verification from '../Screen/Auth/Verification';
@@ -49,18 +32,18 @@ import MessagesList from '../Component/message/MessagesList';
 import PatientList from '../Screen/Patient/PatientList';
 import InitialCreateGroup from '../Screen/Home/InitialCreateGroup';
 import SelectedGroupContact from '../Screen/Home/SelectedGroupContact';
-// import GroupList from '../Screen/GroupList';
 import GroupList from '../Screen/Home/GroupList';
-// import GroupScreen from '../Screen/GroupScreens';
 import GroupScreen from '../Screen/Group/GroupScreen';
-import CreateGroupScreen from '../Screen/CreateGroupScreen';
 import GroupInfo from '../Screen/Group/GroupInfo';
-import Header from '../Screen/Header';
 import MemberList from '../Screen/Group/MemberList';
 import ProfileAccount from '../Screen/Auth/ProfileAccount';
 import ChatInfo from '../Screen/Chat/ChatInfo';
+import DemoScreen1 from '../Screen/Home/DemoScreen1';
+import DemoScreen2 from '../Screen/Home/DemoScreen2';
+import DemoScreen3 from '../Screen/Home/DemoScreen3';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+const {width, height} = Dimensions.get('screen');
 
 // const Tabs = createMaterialTopTabNavigator();
 
@@ -83,117 +66,6 @@ const CustomTabBarIcon1 = ({focused, iconName, filledColor, emptyColor}) => {
   );
 };
 
-// function UserTabSatck() {
-//   return (
-//     <Tab.Navigator
-//       screenOptions={{
-//         headerShown: false,
-//         tabBarShowLabel: false,
-//         tabBarActiveTintColor: 'black',
-//         tabBarInactiveTintColor: 'white',
-//         tabBarHideOnKeyboard: true,
-//         tabBarStyle: {
-//           backgroundColor: 'white',
-//           borderRadius: 50,
-//           position: 'absolute',
-//           bottom: 18,
-//           height: 63,
-//           width: 300,
-//           left: 35,
-//           // paddingTop: 10,
-//           // paddingBottom: 10,
-//           marginHorizontal: 10,
-//         },
-//         initialRouteName: 'HomeStack',
-//       }}>
-//       {/* <Tab.Screen name="Home" component={Home} /> */}
-//       <Tab.Screen
-//         name="Home"
-//         component={HomeStack}
-//         options={{
-//           tabBarIcon: ({focused}) => (
-//             <CustomTabBarIcon1
-//               focused={focused}
-//               iconName={focused ? 'home' : 'home-outline'}
-//               filledColor=" black" // Change to your preferred filled color
-//               emptyColor="black" // Change to your preferred empty color
-//             />
-//           ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="Details"
-//         component={ChatListStack}
-//         options={{
-//           tabBarIcon: ({focused}) => (
-//             <CustomTabBarIcon1
-//               focused={focused}
-//               iconName={focused ? 'message-text' : 'message-text-outline'}
-//               filledColor="gray" // Change to your preferred filled color
-//               emptyColor="black" // Change to your preferred empty color
-//             />
-//           ),
-//         }}
-//       />
-
-//       <Tab.Screen
-//         name="Groups"
-//         component={GroupList}
-//         options={{
-//           tabBarIcon: ({focused}) => (
-//             <CustomTabBarIcon1
-//               focused={focused}
-//               iconName={focused ? 'account-group' : 'account-group-outline'}
-//               filledColor=" black" // Change to your preferred filled color
-//               emptyColor="black" // Change to your preferred empty color
-//             />
-//           ),
-//         }}
-//       />
-//       <Tab.Screen
-//         name="About"
-//         component={PatientList}
-//         options={{
-//           tabBarIcon: ({focused}) => (
-//             <CustomTabBarIcon
-//               focused={focused}
-//               iconName={focused ? 'person' : 'person-outline'}
-//               filledColor="gray" // Change to your preferred filled color
-//               emptyColor="black" // Change to your preferred empty color
-//             />
-//           ),
-//         }}
-//       />
-//       {/* <Tab.Screen
-//         name="patient"
-//         component={About}
-//         options={{
-//           tabBarIcon: ({focused}) => (
-//             <View
-//               style={{
-//                 position: 'absolute',
-//                 top: -20, // Adjust to position the plus icon
-//                 justifyContent: 'center',
-//                 alignItems: 'center',
-//                 width: 50,
-//                 height: 60,
-//                 marginLeft : 200,
-//                 backgroundColor: 'transparent', // Transparent background
-//               }}>
-//               <TouchableOpacity>
-//                 <AntDesign
-//                   name="plus"
-//                   size={30}
-//                   color={focused ? 'black' : 'white'}
-//                 />
-//               </TouchableOpacity>
-//             </View>
-//           ),
-//         }}
-//       /> */}
-//     </Tab.Navigator>
-//   );
-// }
 
 function MainStack() {
   return (
@@ -217,19 +89,13 @@ function MyTabs() {
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: 'white',
-          borderRadius: 50,
+          borderRadius: 20,
           position: 'absolute',
-          bottom: 18,
+          bottom: 17,
           height: 63,
-          width: 300,
-          left: 35,
-          shadowColor: '#000',
-          shadowOpacity: 2.25,
-          shadowRadius: 7.84,
-          elevation: 5,
+          width: width*0.88 ,
+          left: 15,
           borderTopWidth: 0,
-          // paddingTop: 10,
-          // paddingBottom: 10,
           marginHorizontal: 10,
         },
         initialRouteName: 'HomeStack',
@@ -371,7 +237,6 @@ function GroupListStack() {
       initialRouteName="GroupList">
       <Stack.Screen name="GroupList" component={GroupList} />
       {/* <Stack.Screen name="GroupScreen" component={GroupScreen} /> */}
-      {/* <Stack.Screen name='Header' component={Header}/> */}
       {/* <Stack.Screen name='GroupInfo' component={GroupInfo} /> */}
     </Stack.Navigator>
   );
@@ -386,11 +251,10 @@ function PlainStack() {
       <Stack.Screen name="GroupList" component={GroupList} />
       <Stack.Screen name="ChatScreen" component={ChatScreen} />
       <Stack.Screen name="GroupScreen" component={GroupScreen} />
-      {/* <Stack.Screen name='Header' component={Header}/> */}
       <Stack.Screen name="MessageScreen" component={MessageScreen} />
       <Stack.Screen name="GroupInfo" component={GroupInfo} />
       <Stack.Screen name="MemberList" component={MemberList} />
-      <Stack.Screen name='ChatInfo' component={ChatInfo} />
+      <Stack.Screen name="ChatInfo" component={ChatInfo} />
     </Stack.Navigator>
   );
 }
@@ -429,6 +293,9 @@ function HomeStack() {
         component={SelectedGroupContact}
       />
       <Stack.Screen name="GroupList" component={GroupList} />
+      <Stack.Screen name="DemoScreen2" component={DemoScreen2} />
+      <Stack.Screen name="DemoScreen1" component={DemoScreen1} />
+      <Stack.Screen name="DemoScreen3" component={DemoScreen3} />
     </Stack.Navigator>
   );
 }
@@ -436,17 +303,9 @@ function AuthStack() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Check" component={Check} />
-      {/* <Stack.Screen name="TestComponent" component={TestComponent} /> */}
-      <Stack.Screen name="CreateGroupScreen" component={CreateGroupScreen} />
-      <Stack.Screen name="Check2" component={Check2} />
       <Stack.Screen name="PhoneNumber" component={PhoneNumber} />
       <Stack.Screen name="Verification" component={Verification} />
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="SignupScreen" component={SignupScreen} />
-      <Stack.Screen name="Singup" component={Singup} />
       <Stack.Screen
         name="ProfileAccount"
         component={ProfileAccount}></Stack.Screen>

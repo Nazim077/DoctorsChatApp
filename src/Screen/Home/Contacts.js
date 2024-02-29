@@ -13,6 +13,7 @@ import {COLORS, FONTS} from '../../constants/theme';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {contacts} from '../../constants/data';
+import {newTheme} from '../../constants/newTheme'
 import {Block} from 'galio-framework';
 
 const Contacts = ({navigation}) => {
@@ -75,14 +76,16 @@ const Contacts = ({navigation}) => {
             flexDirection: 'row',
             alignItems: 'center',
             paddingHorizontal: 22,
-            borderBottomColor: COLORS.secondaryWhite,
+            borderBottomColor: newTheme.colors.white,  // COLORS.secondaryWhite, old color
             borderBottomWidth: 1,
           },
           index % 2 !== 0
             ? {
                 backgroundColor: COLORS.tertiaryWhite,
               }
-            : null,
+            : {
+              backgroundColor : newTheme.colors.white,
+            }
         ]}>
         <Block
           style={{
@@ -207,7 +210,7 @@ const Contacts = ({navigation}) => {
               marginTop: 22,
               // height : 25
             }}>
-            <Text style={{...FONTS.h4}}>Contacts</Text>
+            <Text style={{...FONTS.h5}}>Contacts</Text>
             <TouchableOpacity
               // onPress={() => handleCreateGroup()}
               onPress={() =>
